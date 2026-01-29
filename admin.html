@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Inbox | LuxeTime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .inbox-container {
+            max-width: 1000px;
+            margin: 100px auto;
+            background: var(--secondary-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .inbox-header {
+            background: #1a1a1a;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .email-list {
+            list-style: none;
+        }
+
+        .email-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .email-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .email-item.unread {
+            border-left: 3px solid var(--accent-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .email-content {
+            display: none;
+            padding: 30px;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+
+        .email-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">LUXE<span>TIME</span></a>
+            <div style="color: var(--accent-gold); font-weight: bold;">ADMIN PORTAL</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="inbox-container">
+            <div class="inbox-header">
+                <h2><i class="fas fa-inbox"></i> Developer Inbox (Orders)</h2>
+                <button class="btn-outline" onclick="clearInbox()">Clear All</button>
+            </div>
+
+            <div id="no-emails" style="padding: 40px; text-align: center; color: #666; display: none;">
+                No emails received yet.
+            </div>
+
+            <ul class="email-list" id="email-list">
+                <!-- JS Injected -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Password Overlay -->
+    <div id="login-overlay"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div
+            style="background: var(--secondary-dark); padding: 40px; border-radius: 10px; border: 1px solid var(--accent-gold); text-align: center; width: 300px;">
+            <h2 style="color: var(--accent-gold); margin-bottom: 20px;">Admin Access</h2>
+            <input type="password" id="admin-pass" placeholder="Enter Password"
+                style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #444; background: #222; color: #fff;">
+            <button class="btn" onclick="checkLogin()">Login</button>
+            <p id="login-error" style="color: red; margin-top: 10px; display: none;">Invalid Password</p>
+            <a href="index.html" style="display: block; margin-top: 20px; color: #666; font-size: 0.9rem;">Back to
+                Home</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check session
+            if (sessionStorage.getItem('admin_logged_in') === 'true') {
+                document.getElementById('login-overlay').style.display = 'none';
+                renderInbox();
+            } else {
+                // Hide main content until logged in (handled by overlay covering it)
+            }
+        });
+
+        function checkLogin() {
+            const pass = document.getElementById('admin-pass').value;
+            // Simple demo password
+            if (pass === 'admin123') {
+                sessionStorage.setItem('admin_logged_in', 'true');
+                document.getElementById('login-overlay').style.display = 'none';
+                renderInbox();
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        }
+
+        function renderInbox() {
+            const orders = JSON.parse(localStorage.getItem('luxware_orders') || '[]');
+            const list = document.getElementById('email-list');
+            const noEmailMsg = document.getElementById('no-emails');
+
+            if (orders.length === 0) {
+                noEmailMsg.style.display = 'block';
+                list.style.display = 'none';
+                return;
+            }
+
+            noEmailMsg.style.display = 'none';
+            list.style.display = 'block';
+            list.innerHTML = '';
+
+            // Sort by newest first
+            orders.reverse().forEach((order, index) => {
+                const li = document.createElement('li');
+
+                li.innerHTML = `
+                    <div class="email-item unread" onclick="toggleEmail(${index})">
+                        <div style="flex: 1;">
+                            <strong style="color: var(--text-light);">${order.customerName}</strong>
+                            <span style="color: #666; font-size: 0.9rem; margin-left: 10px;">New Order Placed</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="display: block; color: var(--accent-gold);">${order.total}</span>
+                            <span style="font-size: 0.8rem; color: #666;">${new Date(order.date).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                    <div class="email-content" id="email-${index}">
+                        <div style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 20px;">
+                            <p><strong>From:</strong> ${order.customerName} &lt;${order.email}&gt;</p>
+                            <p><strong>To:</strong> Developer &lt;admin@luxetime.com&gt;</p>
+                            <p><strong>Date:</strong> ${new Date(order.date).toLocaleString()}</p>
+                            <p><strong>Subject:</strong> New Order Received!</p>
+                        </div>
+                        <pre style="font-family: 'Inter', sans-serif; color: #ccc; white-space: pre-wrap;">${order.messageBody}</pre>
+                        
+                        <div style="margin-top: 30px;">
+                            <button class="btn" onclick="alert('PDF would be attached here in a real backend system.')"><i class="fas fa-file-pdf"></i> View Order PDF</button>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function toggleEmail(index) {
+            const content = document.getElementById(`email-${index}`);
+            const allContents = document.querySelectorAll('.email-content');
+
+            // Close others
+            allContents.forEach(el => {
+                if (el !== content) el.style.display = 'none';
+            });
+
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        }
+
+        function clearInbox() {
+            if (confirm('Delete all emails?')) {
+                localStorage.setItem('luxware_orders', '[]');
+                renderInbox();
+            }
+        }
+    </script>
+</body>
+
+</html>

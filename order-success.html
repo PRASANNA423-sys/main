@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | LuxeTime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">LUXE<span>TIME</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Collection</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 150px; text-align: center; min-height: 60vh;">
+        <i class="fas fa-check-circle" style="font-size: 5rem; color: var(--accent-gold); margin-bottom: 20px;"></i>
+        <h1 style="margin-bottom: 20px;">Thank You for Your Order!</h1>
+        <p style="font-size: 1.2rem; color: var(--text-gray); margin-bottom: 40px;">
+            Your order has been placed successfully. A confirmation email has been sent.
+        </p>
+
+        <div class="order-actions" style="display: flex; justify-content: center; gap: 20px;">
+            <button onclick="window.print()" class="btn-outline">
+                <i class="fas fa-print"></i> Print Order
+            </button>
+            <button id="download-pdf-btn" class="btn">
+                <i class="fas fa-file-pdf"></i> Download PDF
+            </button>
+        </div>
+
+        <div id="order-details-printable"
+            style="margin-top: 50px; text-align: left; background: var(--secondary-dark); padding: 30px; border-radius: 10px; display: none;">
+            <!-- Hidden detail section for PDF/Print generation if needed, or we just print the page -->
+            <h2>Order Details</h2>
+            <div id="order-items-list"></div>
+            <hr style="border-color: #333; margin: 20px 0;">
+            <h3>Total: <span id="final-total"></span></h3>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2024 LuxeTime Watches.</p>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        // Simple logic to show details in the hidden print section
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve last order or cart (for demo purposes)
+            const cart = Cart.getCart();
+            const total = Cart.calculateTotal();
+            const list = document.getElementById('order-items-list');
+
+            if (cart.length > 0) {
+                list.innerHTML = cart.map(item => `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>${item.name} (x${item.quantity})</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                 `).join('');
+                document.getElementById('final-total').innerText = '$' + total.toFixed(2);
+                document.getElementById('order-details-printable').style.display = 'block';
+            }
+
+            // Clear cart after a moment so user can see it once
+            // localStorage.removeItem('luxware_cart'); 
+
+            // PDF Generation logic
+            document.getElementById('download-pdf-btn').addEventListener('click', () => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                doc.setFontSize(22);
+                doc.text("LuxeTime Order Receipt", 20, 20);
+
+                doc.setFontSize(12);
+                doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 30);
+
+                let y = 50;
+                cart.forEach(item => {
+                    doc.text(`${item.name} x ${item.quantity}`, 20, y);
+                    doc.text(`$${(item.price * item.quantity).toFixed(2)}`, 150, y);
+                    y += 10;
+                });
+
+                y += 10;
+                doc.setFontSize(16);
+                doc.text(`Total: $${total.toFixed(2)}`, 20, y);
+
+                doc.save("LuxeTime-Order.pdf");
+            });
+        });
+    </script>
+</body>
+
+</html>

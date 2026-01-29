@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeTime | Premium Wrist Watches</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">LUXE<span>TIME</span></a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="products.html">Collection</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="admin.html" title="Admin Portal"><i class="fas fa-user-lock"></i></a>
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <label class="nav-toggle-label">
+                <i class="fas fa-bars" style="color:white; font-size:1.5rem; cursor:pointer;"></i>
+            </label>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Timeless Elegance <br> On Your Wrist</h1>
+            <p>Discover our exclusive collection of premium luxury watches designed for those who appreciate perfection.
+            </p>
+            <a href="products.html" class="btn">Shop Collection</a>
+        </div>
+    </section>
+
+    <section class="featured container">
+        <div class="section-title">
+            <h2>Featured Timepieces</h2>
+            <p>Handpicked selections just for you</p>
+        </div>
+        <!-- Dynamic Content Here -->
+        <div class="product-grid" id="featured-products-container">
+            <!-- Content injected by js/main.js -->
+        </div>
+    </section>
+
+    <section class="categories-section" style="padding: 50px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Shop by Category</h2>
+            </div>
+            <!-- Simple grid for categories -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="position: relative; height: 300px; overflow: hidden; border-radius: 10px;">
+                    <img src="mens watch collections.webp" style="width:100%; height:100%; object-fit:cover;">
+                    <div
+                        style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.7); padding:10px 20px;">
+                        <h3>Men's Collection</h3>
+                        <a href="products.html" style="color:var(--accent-gold);">Explore &rarr;</a>
+                    </div>
+                </div>
+                <div style="position: relative; height: 300px; overflow: hidden; border-radius: 10px;">
+                    <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=800&q=80"
+                        style="width:100%; height:100%; object-fit:cover;">
+                    <div
+                        style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.7); padding:10px 20px;">
+                        <h3>Women's Collection</h3>
+                        <a href="products.html" style="color:var(--accent-gold);">Explore &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>About LuxeTime</h3>
+                    <p>We provide the finest selection of luxury timepieces, crafted with precision and elegance for the
+                        modern individual.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 LuxeTime Watches. All Rights Reserved.</p>
+                <p style="margin-top: 5px; font-size: 0.8rem;"><a href="admin.html"
+                        style="color: #444; text-decoration: none;">Admin Portal</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Oak | LuxeTime</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="home.css"> <!-- For related products grid -->
+    <link rel="stylesheet" href="product-details.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">LUXE<span>TIME</span></a>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Collection</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
+        </div>
+    </header>
+
+    <section class="container product-details-container">
+        <!-- Product Image -->
+        <div class="product-gallery">
+            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+                alt="The Royal Oak">
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-details-info">
+            <h1>The Royal Oak</h1>
+            <span class="product-price">$1,250.00</span>
+
+            <div class="rating" style="margin-bottom: 20px; color: var(--gold);">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span style="color: #aaa; margin-left: 10px; font-size: 0.9rem;">(24 Reviews)</span>
+            </div>
+
+            <p class="product-description">
+                Experience the epitome of luxury with The Royal Oak. Meticulously crafted with a stainless steel case
+                and a sapphire crystal glass, this timepiece combines classic elegance with modern durability. Perfect
+                for any occasion, from boardroom meetings to evening galas.
+            </p>
+
+            <ul class="specs-list">
+                <li>Case Material <span>Stainless Steel</span></li>
+                <li>Dial Color <span>Royal Blue</span></li>
+                <li>Movement <span>Automatic</span></li>
+                <li>Water Resistance <span>50m</span></li>
+                <li>Strap <span>Leather</span></li>
+            </ul>
+
+            <div class="actions">
+                <div class="quantity-selector">
+                    <button class="quantity-btn">-</button>
+                    <input type="text" value="1" readonly>
+                    <button class="quantity-btn">+</button>
+                </div>
+                <!-- Navigates to cart to simulate adding -->
+                <a href="cart.html" class="btn-add-cart">Add to Cart</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="container related-products">
+        <h2>You Might Also Like</h2>
+        <div class="product-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=600&q=80"
+                        alt="Chronograph" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Silver Chronograph</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">$895.00</span>
+                    <a href="product-details.html" class="btn-outline">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=600&q=80"
+                        alt="Minimalist Black" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Minimalist Black</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <span class="price">$450.00</span>
+                    <a href="product-details.html" class="btn-outline">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="Casio-YellowGold-2.webp"
+                        alt="Gold Edition" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Gold Edition</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">$2,500.00</span>
+                    <a href="product-details.html" class="btn-outline">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>About LuxeTime</h3>
+                    <p>We provide the finest selection of luxury timepieces, crafted with precision and elegance for the
+                        modern individual.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 LuxeTime Watches. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

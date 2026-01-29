@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | LuxeTime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">LUXE<span>TIME</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Collection</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <label class="nav-toggle-label">
+                <i class="fas fa-bars" style="color:white; font-size:1.5rem; cursor:pointer;"></i>
+            </label>
+        </div>
+    </header>
+
+    <div class="container checkout-container" style="padding-top: 150px; padding-bottom: 80px;">
+        <h1 style="margin-bottom: 40px; text-align: center;">Checkout</h1>
+
+        <form class="checkout-layout" style="display: flex; gap: 40px; flex-wrap: wrap;">
+            <!-- Billing Details -->
+            <div class="billing-details" style="flex: 2; min-width: 300px;">
+                <div class="checkout-form"
+                    style="background: var(--secondary-dark); padding: 30px; border-radius: 10px; margin-bottom: 30px;">
+                    <h2 style="margin-bottom: 20px; color: var(--accent-gold);">Billing Details</h2>
+                    <div class="form-row" style="display: flex; gap: 20px;">
+                        <div class="form-group" style="flex: 1; margin-bottom: 20px;">
+                            <label for="fname" style="display: block; margin-bottom: 5px;">First Name</label>
+                            <input type="text" id="fname" required
+                                style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                        </div>
+                        <div class="form-group" style="flex: 1; margin-bottom: 20px;">
+                            <label for="lname" style="display: block; margin-bottom: 5px;">Last Name</label>
+                            <input type="text" id="lname" required
+                                style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="email" style="display: block; margin-bottom: 5px;">Email Address</label>
+                        <input type="email" id="email" required
+                            style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="address" style="display: block; margin-bottom: 5px;">Address</label>
+                        <input type="text" id="address" required
+                            style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                    </div>
+                    <div class="form-row" style="display: flex; gap: 20px;">
+                        <div class="form-group" style="flex: 1; margin-bottom: 20px;">
+                            <label for="city" style="display: block; margin-bottom: 5px;">City</label>
+                            <input type="text" id="city" required
+                                style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="zip" style="display: block; margin-bottom: 5px;">Zip/Postal Code</label>
+                            <input type="text" id="zip" required
+                                style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-form"
+                    style="background: var(--secondary-dark); padding: 30px; border-radius: 10px;">
+                    <h2 style="margin-bottom: 20px; color: var(--accent-gold);">Payment Method</h2>
+                    <div class="payment-methods" style="margin-bottom: 20px;">
+                        <label class="payment-method"
+                            style="display: flex; align-items: center; gap: 10px; background: #2a2a2a; padding: 15px; border-radius: 5px; margin-bottom: 10px;">
+                            <input type="radio" name="payment" checked>
+                            <span>Credit Card</span> <i class="fab fa-cc-visa" style="margin-left:auto;"></i>
+                        </label>
+                        <label class="payment-method"
+                            style="display: flex; align-items: center; gap: 10px; background: #2a2a2a; padding: 15px; border-radius: 5px;">
+                            <input type="radio" name="payment">
+                            <span>PayPal</span> <i class="fab fa-paypal" style="margin-left:auto;"></i>
+                        </label>
+                    </div>
+
+                    <!-- Fake Card Details -->
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="card" style="display: block; margin-bottom: 5px;">Card Number</label>
+                        <input type="text" id="card" placeholder="XXXX-XXXX-XXXX-XXXX"
+                            style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary"
+                style="flex: 1; min-width: 250px; background: var(--secondary-dark); padding: 30px; border-radius: 10px; height: fit-content;">
+                <h2 style="margin-bottom: 20px; color: var(--accent-gold);">Order Summary</h2>
+                <!-- Dynamic Items Injected Here -->
+
+                <div style="margin-top: 20px; color: #ccc;">
+                    <!-- Totals Injected Here -->
+                </div>
+
+                <button type="submit" class="place-order-btn"
+                    style="width: 100%; padding: 15px; background: var(--accent-gold); border: none; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 20px;">Place
+                    Order</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align:center;">
+            <p>&copy; 2024 LuxeTime Watches.</p>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+
+</html>

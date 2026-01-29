@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | LuxeTime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">LUXE<span>TIME</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Collection</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="cart.html" style="color: var(--accent-gold);">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <label class="nav-toggle-label">
+                <i class="fas fa-bars" style="color:white; font-size:1.5rem; cursor:pointer;"></i>
+            </label>
+        </div>
+    </header>
+
+    <div class="container cart-container" style="padding-top: 150px; min-height: 60vh;">
+        <h1 class="cart-title" style="margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 10px;">Your
+            Shopping Cart</h1>
+
+        <div id="empty-cart-msg" style="display: none; text-align: center; font-size: 1.2rem;">
+            Your cart is empty. <a href="products.html" style="color:var(--accent-gold);">Go Shop</a>
+        </div>
+
+        <div class="cart-content" style="display: flex; flex-wrap: wrap; gap: 40px;">
+            <!-- Cart Items -->
+            <div class="cart-items" style="flex: 2; min-width: 300px;">
+                <table class="cart-table" id="cart-table"
+                    style="width: 100%; border-collapse: collapse; display: none;">
+                    <thead style="border-bottom: 1px solid #333; text-align: left;">
+                        <tr>
+                            <th style="padding: 15px 0;">Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items-container">
+                        <!-- JS Injected -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-summary"
+                style="flex: 1; min-width: 250px; background: var(--secondary-dark); padding: 30px; border-radius: 10px; height: fit-content; display: none;">
+                <h3 style="margin-bottom: 20px; color: var(--accent-gold);">Order Summary</h3>
+                <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Tax (Estimated 5%)</span>
+                    <span id="summary-tax">$0.00</span>
+                </div>
+                <hr style="border-color: #333; margin: 15px 0;">
+                <div class="summary-row total"
+                    style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold; font-size: 1.2rem; color: var(--text-light);">
+                    <span>Total</span>
+                    <span id="summary-total">$0.00</span>
+                </div>
+                <a href="checkout.html" class="btn" style="display: block; text-align: center; width: 100%;">Proceed to
+                    Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>About LuxeTime</h3>
+                    <p>We provide the finest selection of luxury timepieces.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 LuxeTime Watches. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+
+</html>
